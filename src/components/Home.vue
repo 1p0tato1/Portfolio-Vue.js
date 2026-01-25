@@ -159,7 +159,8 @@ const t = computed(() => {
                                 <div class="skill-icon skill-python"><i class="fab fa-python"></i><span class="skill-label">Python</span></div>
                                 <div class="skill-icon skill-git"><i class="fab fa-git-alt"></i><span class="skill-label">Git</span></div>
                                 <div class="skill-icon skill-cpp">
-                                    <i class="fas fa-code"></i><span class="skill-label">C++</span>
+                                     <img src="/images/cpp-logo.png" alt="C++" class="cpp-logo" />
+                                    <span class="skill-label">C++</span>
                                 </div>
                                 <div class="skill-icon skill-sql"><i class="fas fa-database"></i><span class="skill-label">SQL</span></div>
                             </div>
@@ -338,7 +339,19 @@ const t = computed(() => {
     border-radius: 12px; display: flex; align-items: center; justify-content: center;
     background: rgba(255, 255, 255, 0.03); transition: all .35s; cursor: default;
 }
-.skill-icon i { font-size: 2rem; color: #ccc; transition: all .35s; }
+.skill-icon i,
+.skill-icon .cpp-logo { 
+    font-size: 2rem; 
+    color: #ccc; 
+    transition: all .35s; 
+}
+
+.skill-icon .cpp-logo {
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(0.7);
+}
 .skill-label {
     position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
     background: #1a1a1a; color: #fff; padding: 4px 8px; border-radius: 4px;
@@ -348,6 +361,10 @@ const t = computed(() => {
     background: rgba(255, 255, 255, 0.08); border-color: #b0e8a7; transform: translateY(-3px);
 }
 .skill-icon:hover i { transform: scale(1.1); color: #fff; }
+.skill-icon:hover .cpp-logo { 
+    transform: scale(1.1); 
+    filter: grayscale(0%) opacity(1);
+}
 .skill-icon:hover .skill-label { opacity: 1; transform: translateX(-50%) translateY(-5px); }
 
 
