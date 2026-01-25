@@ -1,0 +1,779 @@
+<script setup>
+import { ref } from 'vue';
+
+// État pour savoir si la carte est retournée
+const isFlipped = ref(false);
+
+// Fonction pour basculer l'état
+const toggleCard = () => {
+  isFlipped.value = !isFlipped.value;
+};
+</script>
+
+<template>
+  <div class="profile-3d-wrapper">
+    <div class="profile-3d-rotator" :class="{ flipped: isFlipped }">
+      
+      <div class="profile-3d-face front">
+        <div class="face-header">
+          <img src="https://via.placeholder.com/150" alt="Avatar" class="face-avatar" />
+          <div class="face-info">
+            <h2 class="face-name">Mon Profil</h2>
+            <p class="face-role">Développeur Web</p>
+            <p class="face-location"><i class="fas fa-map-marker-alt"></i> France</p>
+          </div>
+        </div>
+
+        <div class="front-scroll">
+          <div class="face-section">
+            <h3>À propos</h3>
+            <p class="about-text">
+              Bienvenue sur mon portfolio Vue.js. J'aime créer des interfaces modernes et réactives.
+            </p>
+          </div>
+
+          <div class="face-section">
+            <h3>Compétences</h3>
+            <div class="skill-chip-grid">
+              <span class="skill-chip">Vue.js</span>
+              <span class="skill-chip">HTML/CSS</span>
+              <span class="skill-chip">JavaScript</span>
+            </div>
+          </div>
+          
+           <div class="face-actions">
+            <a href="#" class="action-btn primary">Voir mon CV</a>
+          </div>
+        </div>
+
+        <button class="face-btn flip" @click="toggleCard">
+          Plus d'infos <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <div class="profile-3d-face back">
+        <div class="back-scroll">
+          <h3 class="back-title"><i class="fas fa-code"></i> Détails & Contact</h3>
+          
+          <div class="stats-grid">
+            <div class="stat-box">
+              <h4>2+</h4>
+              <p>Années</p>
+            </div>
+            <div class="stat-box">
+              <h4>10+</h4>
+              <p>Projets</p>
+            </div>
+            <div class="stat-box">
+              <h4>100%</h4>
+              <p>Passion</p>
+            </div>
+          </div>
+
+          <div class="contact-list">
+            <div class="contact-row">
+              <i class="fas fa-envelope"></i> contact@email.com
+            </div>
+            <div class="contact-row">
+              <i class="fas fa-phone"></i> +33 6 00 00 00 00
+            </div>
+          </div>
+
+          <div class="skill-chip-grid">
+            <div class="skill-icon skill-html">
+              <i class="fab fa-html5"></i>
+              <span class="skill-label">HTML5</span>
+            </div>
+            <div class="skill-icon skill-css">
+              <i class="fab fa-css3-alt"></i>
+              <span class="skill-label">CSS3</span>
+            </div>
+            <div class="skill-icon skill-js">
+              <i class="fab fa-js"></i>
+              <span class="skill-label">JavaScript</span>
+            </div>
+            <div class="skill-icon skill-sql">
+              <i class="fas fa-database"></i>
+              <span class="skill-label">SQL</span>
+            </div>
+          </div>
+          
+           <div class="face-actions">
+            <div class="social-grid">
+                <a href="#https://github.com/1p0tato1" class="social-btn"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/hakim-fayala/" class="social-btn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+
+        </div>
+
+        <button class="face-btn unflip" @click="toggleCard">
+          <i class="fas fa-undo"></i> Retour
+        </button>
+      </div>
+
+    </div>
+  </div>
+</template>
+
+<style scoped>
+/* Colorful SQL icon on hover */
+.skill-icon.skill-sql:hover i.fa-database {
+    color: #00758f;
+    transition: color 0.3s;
+}
+
+.card {
+    box-shadow: none;
+    backface-visibility: visible;
+    background: transparent;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
+    transform-style: preserve-3d;
+    padding: 0;
+    height: auto;
+    margin: 0 2rem 0 0;
+    width: 18rem;
+    height: 25rem;
+    float: left;
+    transition: all 0.2s ease-out;
+    border: none;
+    letter-spacing: 1px;
+}
+
+.flip,
+.unflip {
+    background: rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 100px;
+    line-height: 1rem;
+    cursor: pointer;
+    transition: all 0.1s ease-out;
+    border: none; /* Ajout pour reset bouton */
+    color: white; /* Ajout pour visibilité par défaut */
+}
+
+.unflip {
+    top: auto;
+    background: #2d2d62;
+    bottom: 1rem;
+}
+
+.flip:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.card .flip-inner-card {
+    transform: rotateY(180deg);
+    position: absolute;
+    top: 0;
+    padding: 2rem 1.5rem;
+    box-sizing: border-box;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Align front flip button with back button position (absolute) */
+.face-btn.flip {
+    top: auto;
+    bottom: .95rem;
+    right: .95rem;
+    position: absolute;
+}
+
+/* Provide clearance so button doesn't cover action buttons */
+.profile-3d-face.front .front-scroll {
+    padding-bottom: 4.2rem;
+}
+
+/* ========================= */
+/* New 3D Profile Card Styles*/
+/* ========================= */
+.profile-3d-wrapper {
+    width: 26rem;
+    /* widened */
+    /* height removed to allow JS dynamic sizing */
+    min-height: 32rem;
+    /* safety baseline */
+    perspective: 2100px;
+    position: relative;
+    margin: 0 auto 2.5rem;
+    /* center horizontally */
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    float: none;
+    /* ensure legacy float doesn't affect layout */
+}
+
+@media (max-width: 920px) {
+    .profile-3d-wrapper {
+        width: 26rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .profile-3d-wrapper {
+        width: 22rem;
+        height: 34rem;
+    }
+}
+
+@media (max-width: 580px) {
+    .profile-3d-wrapper {
+        width: 20rem;
+        height: 34rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .profile-3d-wrapper {
+        width: 19rem;
+        height: 34rem;
+    }
+
+    .profile-3d-wrapper {
+        width: 22rem;
+    }
+}
+
+.profile-3d-rotator {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform .85s cubic-bezier(.22, .68, .32, 1.05), filter .3s;
+}
+
+.profile-3d-rotator.flipped {
+    transform: rotateY(180deg);
+}
+
+.profile-3d-face {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    backface-visibility: hidden;
+    background: linear-gradient(135deg, #1E1E1E, #121212);
+    border: 1px solid #2D2D2D;
+    box-shadow: 0 14px 35px -10px rgba(0, 0, 0, .6);
+}
+
+.profile-3d-face.back {
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+    border: 1px solid #b0e8a7;
+    box-shadow: 0 16px 40px -12px rgba(176, 232, 167, 0.35);
+}
+
+.face-btn {
+    position: absolute;
+    top: .95rem;
+    right: .95rem;
+    padding: .65rem 1rem;
+    border-radius: 44px;
+    font-size: .8rem;
+    letter-spacing: .6px;
+    font-weight: 600;
+    color: #b0e8a7;
+    background: rgba(176, 232, 167, 0.1);
+    border: 1px solid #b0e8a7;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    backdrop-filter: blur(4px);
+    transition: background .3s, transform .3s, box-shadow .3s;
+}
+
+.face-btn:hover {
+    background: rgba(176, 232, 167, 0.18);
+    box-shadow: 0 6px 20px -6px rgba(176, 232, 167, 0.4);
+    transform: translateY(-2px);
+}
+
+.face-btn.unflip {
+    top: auto;
+    bottom: .9rem;
+}
+
+.glare-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: .35;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.25), transparent 60%);
+    transition: background .25s;
+}
+
+.front-scroll,
+.back-scroll {
+    flex: 1;
+    padding: 1.4rem 1.3rem 1.2rem;
+    overflow: visible;
+}
+
+/* Remove custom scrollbars since scrolling removed */
+.front-scroll::-webkit-scrollbar,
+.back-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.face-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.face-avatar {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #b0e8a7;
+    box-shadow: 0 0 0 4px rgba(176, 232, 167, 0.12);
+    transition: transform .4s, box-shadow .4s;
+}
+
+.face-avatar:hover {
+    transform: scale(1.05) rotate(-2deg);
+    box-shadow: 0 8px 30px -6px rgba(176, 232, 167, 0.55);
+}
+
+.face-name {
+    margin: 0 0 .35rem;
+    font-size: 1.75rem;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: .5px;
+}
+
+.face-role {
+    margin: 0 0 .45rem;
+    font-size: 1rem;
+    color: #b0e8a7;
+    font-style: italic;
+    letter-spacing: .4px;
+}
+
+.face-location {
+    margin: 0;
+    font-size: .82rem;
+    color: #cfcfcf;
+    letter-spacing: .6px;
+}
+
+.face-location i {
+    color: #b0e8a7;
+    margin-right: .35rem;
+}
+
+.face-section {
+    margin-bottom: .95rem;
+}
+
+.face-section:last-of-type {
+    margin-bottom: .6rem;
+}
+
+.face-section h3 {
+    margin: 0 0 .55rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #b0e8a7;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    letter-spacing: .6px;
+    position: relative;
+}
+
+.face-section h3:after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(176, 232, 167, .45), transparent);
+    margin-left: .55rem;
+}
+
+.about-text {
+    margin: 0;
+    font-size: .82rem;
+    line-height: 1.55;
+    color: #dedede;
+    text-align: justify;
+}
+
+.skill-chip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: .45rem;
+}
+
+.skill-chip {
+    padding: .48rem .65rem;
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+    background: rgba(176, 232, 167, 0.08);
+    border: 1px solid rgba(176, 232, 167, 0.35);
+    color: #b0e8a7;
+    border-radius: 8px;
+    font-weight: 600;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: background .3s, transform .3s, border-color .3s;
+}
+
+.skill-chip:hover {
+    background: rgba(176, 232, 167, 0.18);
+    transform: translateY(-2px);
+    border-color: #b0e8a7;
+}
+
+.highlights {
+    margin: 0;
+    padding-left: 1.1rem;
+    display: grid;
+    gap: .4rem;
+    font-size: .74rem;
+    color: #dcdcdc;
+}
+
+.highlights li {
+    line-height: 1.35;
+}
+
+.face-actions {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin-top: .3rem;
+}
+
+.action-btn {
+    padding: .75rem .95rem;
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .7px;
+    border-radius: 9px;
+    text-decoration: none;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .55rem;
+    border: 1px solid #b0e8a7;
+    background: #1E1E1E;
+    color: #fff;
+    transition: background .35s, transform .35s, box-shadow .35s;
+}
+
+.action-btn.primary {
+    background: transparent;
+    color: #b0e8a7;
+    margin-top: 15px;
+}
+
+.action-btn.secondary {
+    background: transparent;
+    color: #b0e8a7;
+}
+
+.action-btn:hover {
+    background: rgba(176, 232, 167, .12);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 26px -8px rgba(176, 232, 167, 0.45);
+}
+
+.action-btn.secondary:hover {
+    background: rgba(176, 232, 167, .08);
+}
+
+/* Back */
+.back-title {
+    margin: 0 0 1rem;
+    font-size: 1.15rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    font-weight: 600;
+    letter-spacing: .5px;
+}
+
+.back-title i {
+    color: #b0e8a7;
+}
+
+.contact-list {
+    display: grid;
+    gap: .5rem;
+    margin-bottom: 1rem;
+}
+
+.contact-row {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    font-size: .78rem;
+    letter-spacing: .5px;
+    padding: .65rem .75rem;
+    background: rgba(176, 232, 167, 0.07);
+    border: 1px solid rgba(176, 232, 167, .25);
+    border-left: 3px solid #b0e8a7;
+    border-radius: 9px;
+    color: #e0e0e0;
+}
+
+.contact-row i {
+    color: #b0e8a7;
+}
+
+/* Skill icon grid (grayscale -> colored on hover with tooltips) */
+.skill-chip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+    gap: .75rem;
+}
+
+.skill-icon {
+    position: relative;
+    aspect-ratio: 1/1;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    cursor: pointer;
+    transition: border-color .35s, background .35s, transform .35s, box-shadow .35s;
+}
+
+.skill-icon i,
+.skill-icon .cpp-logo {
+    font-size: 2.2rem;
+    filter: grayscale(1) brightness(0.8);
+    transition: transform .35s, filter .35s;
+}
+
+.skill-icon .cpp-logo {
+    width: 2.2rem;
+    height: auto;
+    max-height: 2.2rem;
+    object-fit: contain;
+}
+
+.skill-icon .skill-label {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1a1a;
+    color: #fff;
+    font-size: .75rem;
+    font-weight: 500;
+    padding: .5rem .75rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s, visibility .3s, transform .3s;
+    pointer-events: none;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.skill-icon .skill-label::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #1a1a1a;
+}
+
+.skill-icon:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.skill-icon:hover i,
+.skill-icon:hover .cpp-logo {
+    transform: scale(1.1);
+    filter: none;
+}
+
+.skill-icon:hover .skill-label {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-2px);
+}
+
+/* Language-specific colors (applied on hover) */
+.skill-html:hover i {
+    color: #E44D26;
+}
+
+.skill-css:hover i {
+    color: #1572B6;
+}
+
+.skill-js:hover i {
+    color: #F7DF1E;
+}
+
+.skill-python:hover i {
+    color: #3776AB;
+}
+
+.skill-git:hover i {
+    color: #F05032;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .5rem;
+    margin-bottom: 1rem;
+}
+
+.stat-box {
+    position: relative;
+    padding: .6rem .5rem .55rem;
+    text-align: center;
+    background: rgba(176, 232, 167, 0.06);
+    border: 1px solid rgba(176, 232, 167, .3);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.stat-box:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 25%, rgba(176, 232, 167, .2), transparent 65%);
+    opacity: .7;
+    pointer-events: none;
+}
+
+.stat-box h4 {
+    margin: 0;
+    font-size: 1.35rem;
+    color: #b0e8a7;
+    letter-spacing: 1px;
+}
+
+.stat-box p {
+    margin: .25rem 0 0;
+    font-size: .62rem;
+    letter-spacing: .55px;
+    color: #d0d0d0;
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .55rem;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    border: 1px solid #b0e8a7;
+    color: #b0e8a7;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background .35s, transform .35s, box-shadow .35s;
+}
+
+.social-btn:hover {
+    background: #b0e8a7;
+    color: #121212;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 26px -6px rgba(176, 232, 167, 0.45);
+}
+
+@media (max-width: 620px) {
+    .face-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .face-avatar {
+        width: 92px;
+        height: 92px;
+    }
+
+    .face-name {
+        font-size: 1.55rem;
+    }
+
+    .face-role {
+        font-size: .95rem;
+    }
+
+    .skill-chip-grid {
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .profile-3d-rotator {
+        transition: none;
+    }
+
+    .face-btn,
+    .action-btn,
+    .skill-chip,
+    .social-btn {
+        transition: none;
+    }
+}
+
+.inner-card-backface {
+    transform: rotateX(0) rotateY(0deg) scale(1) translateZ(-4px);
+    border-radius: 14px;
+    background: linear-gradient(45deg, #0b0b2a, #0b0b2a);
+    position: absolute;
+    top: 0;
+    color: white;
+    padding: 2rem;
+    box-sizing: border-box;
+    transition: all 0.15s ease-out;
+    will-change: transform, filter;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card .flip-inner-card {
+    transform: rotateY(180deg);
+    position: absolute;
+    top: 0;
+    padding: 2rem 1.5rem;
+    box-sizing: border-box;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
