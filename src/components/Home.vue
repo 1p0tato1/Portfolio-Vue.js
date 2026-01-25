@@ -4,7 +4,6 @@ import { globalState } from '../state.js';
 
 const currentLang = computed(() => globalState.lang);
 
-// --- 2. LOGIQUE CARTE 3D (TILT & FLIP) ---
 const isFlipped = ref(false);
 const cardWrapper = ref(null);
 const cardRotator = ref(null);
@@ -13,7 +12,6 @@ const glareStyle = ref({});
 const toggleCard = () => {
   isFlipped.value = !isFlipped.value;
   if (cardRotator.value) {
-    // Reset tilt lors du retournement pour éviter les sauts visuels
     const baseRotation = isFlipped.value ? 'rotateY(180deg)' : 'rotateY(0deg)';
     cardRotator.value.style.transform = baseRotation;
     glareStyle.value = { background: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.25), transparent 60%)' };
@@ -27,7 +25,6 @@ const handleMouseMove = (e) => {
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
   
-  // Calcul position curseur (-0.5 à 0.5)
   const px = (x / rect.width) - 0.5;
   const py = (y / rect.height) - 0.5;
   
@@ -37,10 +34,8 @@ const handleMouseMove = (e) => {
   
   const baseY = isFlipped.value ? 180 : 0;
   
-  // Appliquer transformation
   cardRotator.value.style.transform = `rotateY(${baseY + parseFloat(ry)}deg) rotateX(${rx}deg)`;
   
-  // Effet de reflet (Glare)
   const glareX = 50 + px * 50;
   const glareY = 50 + py * 50;
   glareStyle.value = {
@@ -57,7 +52,6 @@ const resetTilt = () => {
   };
 };
 
-// Gestion hauteur dynamique (ResizeObserver) pour éviter les coupures
 let resizeObserver = null;
 
 onMounted(() => {
@@ -71,7 +65,7 @@ onMounted(() => {
       if (max > 0) cardWrapper.value.style.height = `${max}px`;
     });
     
-    resizeObserver.observe(document.body); // Observer changements globaux
+    resizeObserver.observe(document.body);
     const front = cardWrapper.value.querySelector('.front');
     const back = cardWrapper.value.querySelector('.back');
     if (front) resizeObserver.observe(front);
@@ -83,7 +77,7 @@ onUnmounted(() => {
   if (resizeObserver) resizeObserver.disconnect();
 });
 
-// --- 3. TEXTES & TRADUCTIONS ---
+
 const t = computed(() => {
   const isEn = currentLang.value === 'en';
   return {
@@ -91,23 +85,23 @@ const t = computed(() => {
       ? { home: 'Welcome', exp: 'Education & Job Experience', skills: 'Skills', certs: 'Diplomas & Certifications', projects: 'Projects', contact: 'Contact' }
       : { home: 'Accueil', exp: 'Éducation & Expérience Professionnelle', skills: 'Compétences', certs: 'Diplômes & Certifications', projects: 'Projets', contact: 'Contact' },
     
-    // Sidebar & Header
+
     role: isEn ? 'Student' : 'Étudiant',
     headerTitle: isEn ? 'Welcome to My Portfolio' : 'Bienvenue dans Mon Portfolio',
     headerSub: isEn ? 'Discover my journey, skills, and passion' : 'Découvrez mon parcours, mes compétences et ma passion',
     
-    // Carte Front
+
     btnContact: 'Contact',
     cardName: 'Fayala Hakim',
     cardRole: isEn ? 'Engineering Student' : 'Étudiant Ingénieur',
-    location: isEn ? 'France' : 'Saint-Étienne, France', // Respect de ton fichier source
+    location: isEn ? 'France' : 'Saint-Étienne, France',
     aboutTitle: isEn ? 'About Me' : 'À Propos de Moi',
     aboutText: isEn 
       ? 'Curious student & self‑driven developer focused on building clean, accessible and efficient web experiences while continuously learning core CS concepts.'
       : "Étudiant curieux et développeur autodidacte, concentré sur la création d'expériences web propres, accessibles et efficaces tout en apprenant continuellement les concepts fondamentaux de l'informatique.",
     skillsTitle: isEn ? 'Key Skills' : 'Compétences Clés',
     
-    // Carte Back
+
     btnBack: isEn ? 'Back' : 'Retour',
     contactTitle: isEn ? 'Contact Info' : 'Informations de Contact',
     contactRole: isEn ? 'Engineering Student' : 'Étudiant Ingénieur',
@@ -189,11 +183,6 @@ const t = computed(() => {
                             <div class="contact-row"><i class="fas fa-globe"></i><span>{{ t.contactStatus }}</span></div>
                         </div>
 
-                        <div class="stats-grid">
-                            <div class="stat-box"><h4>2+</h4><p>{{ t.stats.years }}</p></div>
-                            <div class="stat-box"><h4>2+</h4><p>{{ t.stats.projects }}</p></div>
-                            <div class="stat-box"><h4>∞</h4><p>{{ t.stats.growth }}</p></div>
-                        </div>
 
                         <div class="social-grid">
                             <a href="https://www.linkedin.com/in/hakim-fayala/" class="social-btn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
@@ -211,26 +200,21 @@ const t = computed(() => {
 </template>
 
 <style scoped>
-/* ======================== */
-/* 1. GLOBAL LAYOUT CLEANUP */
-/* ======================== */
-/* Styles moved to main.css */
-/* Minimal specific styles for Home */
+
+
 .home-content {
   width: 100%;
 }
-/* Re-adding necessary specific styles that might have been removed or depend on removed classes */
+
 
 .page-header { margin-bottom: 3rem; text-align: center; }
-.page-title { font-size: 2.5rem; margin-bottom: 0.5rem; background: linear-gradient(90deg, #fff, #b0e8a7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.page-title { font-size: 2.5rem; margin-bottom: 0.5rem; background: linear-gradient(90deg, #fff, #b0e8a7); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 .page-subtitle { color: #888; font-size: 1.1rem; }
 .fade-in { animation: fadeIn 0.8s ease forwards; opacity: 0; transform: translateY(20px); }
 .delay-1 { animation-delay: 0.2s; }
 @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 
-/* =========================================
-   2. STYLES 3D CARD (CARD-3D.CSS)
-   ========================================= */
+
 .profile-3d-wrapper {
     width: 26rem;
     min-height: 32rem;
@@ -245,10 +229,10 @@ const t = computed(() => {
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    transition: transform 0.1s ease-out; /* Mouvement fluide pour le Tilt */
+    transition: transform 0.1s ease-out;
 }
 .profile-3d-rotator.flipped {
-    transition: transform 0.85s cubic-bezier(.22, .68, .32, 1.05); /* Transition lente pour le Flip */
+    transition: transform 0.85s cubic-bezier(.22, .68, .32, 1.05);
     transform: rotateY(180deg);
 }
 
@@ -272,7 +256,7 @@ const t = computed(() => {
     box-shadow: 0 16px 40px -12px rgba(176, 232, 167, 0.35);
 }
 
-/* Glare Layer */
+
 .glare-layer {
     position: absolute;
     inset: 0;
@@ -282,7 +266,7 @@ const t = computed(() => {
     transition: background 0.1s;
 }
 
-/* Buttons */
+
 .face-btn {
     position: absolute;
     top: .95rem;
@@ -308,16 +292,21 @@ const t = computed(() => {
     box-shadow: 0 6px 20px -6px rgba(176, 232, 167, 0.4);
 }
 .face-btn.flip { bottom: .95rem; top: auto; right: .95rem; }
-.face-btn.unflip { top: .95rem; bottom: auto; right: auto; left: .95rem; }
-
-/* Scroll Content */
-.front-scroll, .back-scroll {
-    flex: 1;
-    padding: 1.4rem 1.3rem 1.2rem;
-    /* On laisse le contenu pousser le conteneur pour le ResizeObserver */
+.face-btn.unflip { 
+    top: auto; 
+    bottom: 1.2rem; 
+    left: 50%; 
+    right: auto;
+    transform: translateX(-50%);
 }
 
-/* Header */
+
+.front-scroll, .back-scroll {
+    flex: 1;
+    padding: 1.4rem 1.3rem 4.5rem;
+}
+
+
 .face-header {
     display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;
 }
@@ -332,7 +321,7 @@ const t = computed(() => {
 .face-location { margin: 0; font-size: .82rem; color: #cfcfcf; }
 .face-location i { color: #b0e8a7; margin-right: .35rem; }
 
-/* Sections */
+
 .face-section { margin-bottom: 1.5rem; }
 .face-section h3 {
     margin: 0 0 .55rem; font-size: 1.05rem; color: #b0e8a7;
@@ -340,7 +329,7 @@ const t = computed(() => {
 }
 .about-text { font-size: .85rem; line-height: 1.55; color: #dedede; text-align: justify; margin: 0; }
 
-/* Skills Grid */
+
 .skill-chip-grid {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(65px, 1fr)); gap: .75rem;
 }
@@ -361,14 +350,14 @@ const t = computed(() => {
 .skill-icon:hover i { transform: scale(1.1); color: #fff; }
 .skill-icon:hover .skill-label { opacity: 1; transform: translateX(-50%) translateY(-5px); }
 
-/* Colors */
+
 .skill-html:hover i { color: #E44D26; }
 .skill-css:hover i { color: #1572B6; }
 .skill-js:hover i { color: #F7DF1E; }
 .skill-python:hover i { color: #3776AB; }
 .skill-git:hover i { color: #F05032; }
 
-/* Back Content */
+
 .back-title { color: #fff; display: flex; align-items: center; gap: .5rem; font-size: 1.15rem; margin-top: 1rem; }
 .back-title i { color: #b0e8a7; }
 .contact-list { margin-bottom: 1.5rem; display: grid; gap: 0.8rem; }
@@ -394,7 +383,7 @@ const t = computed(() => {
 }
 .social-btn:hover { background: #b0e8a7; color: #121212; transform: translateY(-3px); }
 
-/* Responsive */
+
 @media (max-width: 620px) {
     .profile-3d-wrapper { width: 90%; }
     .face-header { flex-direction: column; text-align: center; }

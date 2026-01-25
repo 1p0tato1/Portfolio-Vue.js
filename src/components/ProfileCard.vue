@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from 'vue';
 
-// État pour savoir si la carte est retournée
+
 const isFlipped = ref(false);
 
-// Fonction pour basculer l'état
+
 const toggleCard = () => {
   isFlipped.value = !isFlipped.value;
 };
@@ -55,20 +55,6 @@ const toggleCard = () => {
         <div class="back-scroll">
           <h3 class="back-title"><i class="fas fa-code"></i> Détails & Contact</h3>
           
-          <div class="stats-grid">
-            <div class="stat-box">
-              <h4>2+</h4>
-              <p>Années</p>
-            </div>
-            <div class="stat-box">
-              <h4>10+</h4>
-              <p>Projets</p>
-            </div>
-            <div class="stat-box">
-              <h4>100%</h4>
-              <p>Passion</p>
-            </div>
-          </div>
 
           <div class="contact-list">
             <div class="contact-row">
@@ -103,6 +89,7 @@ const toggleCard = () => {
                 <a href="#https://github.com/1p0tato1" class="social-btn"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/hakim-fayala/" class="social-btn"><i class="fab fa-linkedin"></i></a>
                 <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+
             </div>
           </div>
 
@@ -118,95 +105,26 @@ const toggleCard = () => {
 </template>
 
 <style scoped>
-/* Colorful SQL icon on hover */
+
 .skill-icon.skill-sql:hover i.fa-database {
     color: #00758f;
     transition: color 0.3s;
 }
 
-.card {
-    box-shadow: none;
-    backface-visibility: visible;
-    background: transparent;
-    font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
-    transform-style: preserve-3d;
-    padding: 0;
-    height: auto;
-    margin: 0 2rem 0 0;
-    width: 18rem;
-    height: 25rem;
-    float: left;
-    transition: all 0.2s ease-out;
-    border: none;
-    letter-spacing: 1px;
-}
 
-.flip,
-.unflip {
-    background: rgba(0, 0, 0, 0.1);
-    font-size: 1rem;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.5rem 0.75rem;
-    border-radius: 100px;
-    line-height: 1rem;
-    cursor: pointer;
-    transition: all 0.1s ease-out;
-    border: none; /* Ajout pour reset bouton */
-    color: white; /* Ajout pour visibilité par défaut */
-}
-
-.unflip {
-    top: auto;
-    background: #2d2d62;
-    bottom: 1rem;
-}
-
-.flip:hover {
-    background: rgba(0, 0, 0, 0.3);
-}
-
-.card .flip-inner-card {
-    transform: rotateY(180deg);
-    position: absolute;
-    top: 0;
-    padding: 2rem 1.5rem;
-    box-sizing: border-box;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-/* Align front flip button with back button position (absolute) */
-.face-btn.flip {
-    top: auto;
-    bottom: .95rem;
-    right: .95rem;
-    position: absolute;
-}
-
-/* Provide clearance so button doesn't cover action buttons */
-.profile-3d-face.front .front-scroll {
-    padding-bottom: 4.2rem;
-}
-
-/* ========================= */
-/* New 3D Profile Card Styles*/
-/* ========================= */
 .profile-3d-wrapper {
     width: 26rem;
-    /* widened */
-    /* height removed to allow JS dynamic sizing */
+
+
     min-height: 32rem;
-    /* safety baseline */
+
     perspective: 2100px;
     position: relative;
     margin: 0 auto 2.5rem;
-    /* center horizontally */
+
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     float: none;
-    /* ensure legacy float doesn't affect layout */
+
 }
 
 @media (max-width: 920px) {
@@ -300,7 +218,9 @@ const toggleCard = () => {
 
 .face-btn.unflip {
     top: auto;
-    bottom: .9rem;
+    bottom: 1.2rem;
+    right: 50%;
+    transform: translateX(50%);
 }
 
 .glare-layer {
@@ -316,11 +236,11 @@ const toggleCard = () => {
 .front-scroll,
 .back-scroll {
     flex: 1;
-    padding: 1.4rem 1.3rem 1.2rem;
+    padding: 1.4rem 1.3rem 4.5rem;
     overflow: visible;
 }
 
-/* Remove custom scrollbars since scrolling removed */
+
 .front-scroll::-webkit-scrollbar,
 .back-scroll::-webkit-scrollbar {
     display: none;
@@ -499,7 +419,7 @@ const toggleCard = () => {
     background: rgba(176, 232, 167, .08);
 }
 
-/* Back */
+
 .back-title {
     margin: 0 0 1rem;
     font-size: 1.15rem;
@@ -539,7 +459,7 @@ const toggleCard = () => {
     color: #b0e8a7;
 }
 
-/* Skill icon grid (grayscale -> colored on hover with tooltips) */
+
 .skill-chip-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
@@ -622,7 +542,7 @@ const toggleCard = () => {
     transform: translateX(-50%) translateY(-2px);
 }
 
-/* Language-specific colors (applied on hover) */
+
 .skill-html:hover i {
     color: #E44D26;
 }
@@ -746,34 +666,4 @@ const toggleCard = () => {
     }
 }
 
-.inner-card-backface {
-    transform: rotateX(0) rotateY(0deg) scale(1) translateZ(-4px);
-    border-radius: 14px;
-    background: linear-gradient(45deg, #0b0b2a, #0b0b2a);
-    position: absolute;
-    top: 0;
-    color: white;
-    padding: 2rem;
-    box-sizing: border-box;
-    transition: all 0.15s ease-out;
-    will-change: transform, filter;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.card.flipped {
-    transform: rotateY(180deg);
-}
-
-.card .flip-inner-card {
-    transform: rotateY(180deg);
-    position: absolute;
-    top: 0;
-    padding: 2rem 1.5rem;
-    box-sizing: border-box;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
 </style>
