@@ -9,6 +9,8 @@ const cardWrapper = ref(null);
 const cardRotator = ref(null);
 const glareStyle = ref({});
 
+const emit = defineEmits(['changePage']);
+
 const toggleCard = () => {
   isFlipped.value = !isFlipped.value;
   if (cardRotator.value) {
@@ -188,9 +190,9 @@ const t = computed(() => {
 
                         <div class="social-grid">
                             <a href="https://www.linkedin.com/in/hakim-fayala/" class="social-btn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="https://github.com/1p0tato1?tab=projects" class="social-btn" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="https://github.com/1p0tato1?tab=repositories" class="social-btn" target="_blank"><i class="fab fa-github"></i></a>
                             <a :href="t.cvLink" class="social-btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-arrow-down"></i></a>
-                            <a href="#" class="social-btn"><i class="fas fa-envelope"></i></a>
+                            <a href="#" class="social-btn" @click.prevent="emit('changePage', 'Contact')"><i class="fas fa-envelope"></i></a>
                         </div>
                     </div>
                     <span class="glare-layer" :style="glareStyle"></span>
@@ -232,10 +234,10 @@ const t = computed(() => {
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    transition: transform 0.5s ease-out;
+    transition: transform 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .profile-3d-rotator.flipped {
-    transition: transform 0.85s cubic-bezier(.22, .68, .32, 1.05);
+    transition: transform 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform: rotateY(180deg);
 }
 

@@ -42,7 +42,7 @@ const setPage = (pageName) => {
     />
 
     <div class="main-content">
-      <Home v-if="currentPage === 'Home'" />
+      <Home v-if="currentPage === 'Home'" @change-page="setPage" />
       <Experience v-if="currentPage === 'Experience'" />
       <Certifications v-if="currentPage === 'Certifications'" />
       <Contact v-if="currentPage === 'Contact'" />
