@@ -232,7 +232,7 @@ const t = computed(() => {
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    transition: transform 0.1s ease-out;
+    transition: transform 0.5s ease-out;
 }
 .profile-3d-rotator.flipped {
     transition: transform 0.85s cubic-bezier(.22, .68, .32, 1.05);
