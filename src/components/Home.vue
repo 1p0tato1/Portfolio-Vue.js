@@ -110,7 +110,8 @@ const t = computed(() => {
       years: isEn ? 'Years Learning' : "Années d'Apprentissage",
       projects: isEn ? 'Projects' : 'Projets',
       growth: isEn ? 'Growth' : 'Croissance'
-    }
+    },
+    cvLink: isEn ? '/pdfs/cv-en.pdf' : '/pdfs/cv-fr.pdf'
   };
 });
 </script>
@@ -188,6 +189,7 @@ const t = computed(() => {
                         <div class="social-grid">
                             <a href="https://www.linkedin.com/in/hakim-fayala/" class="social-btn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                             <a href="https://github.com/1p0tato1?tab=projects" class="social-btn" target="_blank"><i class="fab fa-github"></i></a>
+                            <a :href="t.cvLink" class="social-btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-arrow-down"></i></a>
                             <a href="#" class="social-btn"><i class="fas fa-envelope"></i></a>
                         </div>
                     </div>
