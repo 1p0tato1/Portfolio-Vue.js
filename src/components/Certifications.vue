@@ -7,7 +7,6 @@ import { globalState } from '../state.js';
 const currentLang = computed(() => globalState.lang);
 
 // --- 3. DICTIONNAIRE DE TEXTES ---
-// Ici, on stocke tout le texte en FR et en EN
 const translations = {
   en: {
     pageTitle: "Diplomas & Certifications",
@@ -62,7 +61,6 @@ const translations = {
   }
 };
 
-// Computed property pour récupérer facilement le texte actuel
 const t = computed(() => translations[currentLang.value]);
 
 </script>
@@ -139,12 +137,6 @@ const t = computed(() => translations[currentLang.value]);
 </template>
 
 <style scoped>
-/* ==========================================================================
-   STYLES GLOBAUX & STRUCTURE (Même CSS que précédemment)
-   ========================================================================== */
-/* ==========================================================================
-   STYLES GLOBAUX CLEANUP
-   ========================================================================== */
 .certifications-content { width: 100%; }
 .page-header { margin-bottom: 3rem; text-align: center; }
 .page-title {
@@ -163,16 +155,15 @@ const t = computed(() => translations[currentLang.value]);
   border-radius: 12px; border-left: 3px solid #b0e8a7;
 }
 
-/* Animations & Toggles */
+
 .fade-in { animation: fadeIn 0.8s ease forwards; opacity: 0; transform: translateY(20px); }
 .delay-1 { animation-delay: 0.2s; }
 .delay-2 { animation-delay: 0.4s; }
 .delay-3 { animation-delay: 0.6s; }
 @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 
-/* ==========================================================================
-   STYLES SPÉCIFIQUES (CERTIFICATIONS)
-   ========================================================================== */
+
+
 @media (max-width: 900px) {
     .education-grid { gap: 15px; }
     .education-card { flex-direction: column; padding: 15px; }
