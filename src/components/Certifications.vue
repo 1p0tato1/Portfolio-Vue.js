@@ -103,7 +103,9 @@ const t = computed(() => translations[currentLang.value]);
           <div class="certifications-grid">
             <div class="cert-card">
               <div class="cert-badge">
-                <div class="cert-icon"><i class="fab fa-kaggle"></i></div>
+                <div class="cert-icon">
+                  <img src="/images/kaggle.png" alt="Kaggle Logo" class="cert-logo-img">
+                </div>
               </div>
               <div class="cert-content">
                 <h3>{{ t.kaggleTitle }}</h3>
@@ -215,10 +217,16 @@ const t = computed(() => translations[currentLang.value]);
 .cert-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(176,232,167,0.15); border-color: #b0e8a7; }
 .cert-badge { text-align: center; margin-bottom: 20px; }
 .cert-icon {
-    width: 80px; height: 80px; margin: 0 auto; background: #b0e8a7; border-radius: 50%;
+    width: 80px; height: 80px; margin: 0 auto; background: #ffffff; border-radius: 50%;
     display: flex; align-items: center; justify-content: center; font-weight: bold; color: #000;
     font-size: 1.2rem; box-shadow: 0 8px 25px rgba(176,232,167,0.3); transition: transform 0.3s ease;
     animation: pulse 3s infinite;
+    overflow: hidden;
+}
+.cert-logo-img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
 }
 .cert-card:hover .cert-icon { transform: scale(1.1) rotate(5deg); }
 .cert-content h3 { color: #b0e8a7; font-size: 1.3rem; margin-bottom: 10px; text-align: center; }
@@ -232,8 +240,7 @@ const t = computed(() => translations[currentLang.value]);
 }
 .skill-tag:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(176,232,167,0.4); }
 @keyframes pulse {
-    0%, 100% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3); }
-    50% { box-shadow: 0 8px 35px rgba(255, 215, 0, 0.5); }
+    50% { box-shadow: 0 8px 35px rgba(255, 255, 255, 0.5); }
 }
 .download-tag:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(176, 232, 167, 0.4); }
 </style>
