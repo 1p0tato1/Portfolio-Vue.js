@@ -6,7 +6,7 @@ import { globalState } from '../state.js';
 // --- 1. NAVIGATION & LANGUE ---
 const currentLang = computed(() => globalState.lang);
 
-// --- 2. DONNÉES (ÉDUCATION) ---
+// --- 2. ÉDUCATION ---
 const educationData = computed(() => {
   const isEn = currentLang.value === 'en';
   return [
@@ -53,7 +53,7 @@ const educationData = computed(() => {
   ];
 });
 
-// --- 3. DONNÉES (EXPÉRIENCE PRO) ---
+// --- 3. EXPÉRIENCE PRO ---
 const experienceData = ref([
   {
     id: 1,
@@ -107,12 +107,16 @@ const experienceData = ref([
         contentListFr: [
             "Assister les clients et fournir des conseils.",
             "Gérer le réapprovisionnement et l'étiquetage.",
-            "Soutenir les opérations logistiques."
+            "Soutenir les opérations logistiques.",
+            "Service client et orientation.",
+            "Travail d'équipe dans un environnement dynamique."
         ],
         contentListEn: [
             "Assist customers and provide advice.",
             "Manage restocking and labeling.",
-            "Support logistics operations."
+            "Support logistics operations.",
+            "Customer service and guidance.",
+            "Teamwork in a dynamic environment."
         ],
         isOpen: false
       }
@@ -132,10 +136,16 @@ const experienceData = ref([
         titleFr: "Responsabilités Principales",
         titleEn: "Main Responsibilities",
         contentListFr: [
+            "Assister les clients et fournir des conseils.",
+            "Gérer le réapprovisionnement et l'étiquetage.",
+            "Soutenir les opérations logistiques.",
             "Service client et orientation.",
             "Travail d'équipe dans un environnement dynamique."
         ],
         contentListEn: [
+            "Assist customers and provide advice.",
+            "Manage restocking and labeling.",
+            "Support logistics operations.",
             "Customer service and guidance.",
             "Teamwork in a dynamic environment."
         ],
