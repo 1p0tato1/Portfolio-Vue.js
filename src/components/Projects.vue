@@ -31,7 +31,7 @@ const projects = computed(() => {
         ? ["✨ Functional & user-friendly website", "⚡ Improved SEO visibility", "📈 Enhanced ranking", "🤝 Team collaboration"]
         : ["✨ Site fonctionnel et ergonomique", "⚡ Meilleure visibilité SEO", "📈 Classement amélioré", "🤝 Travail d'équipe"],
       links: [
-        { label: isEn ? "Live Demo" : "Démo Live", url: "https://leklarkifou.com/" },
+        { label: isEn ? "See Website" : "Voir le site", url: "https://leklarkifou.com/" },
         { label: "GitHub", url: "https://github.com/1p0tato1/SEO-Competition" }
       ]
     },
@@ -86,7 +86,6 @@ const projects = computed(() => {
         ? ["📖 Functional Pokedex", "⚡ Sorting algorithms"]
         : ["📖 Pokédex fonctionnel", "⚡ Algorithmes de tri"],
       links: [
-        { label: isEn ? "Live Demo" : "Démo Live", url: "https://replit.com/@xp0tatox/Pokemon-Game" },
         { label: "GitHub", url: "https://github.com/1p0tato1/Pokemon-Game" }
       ]
     }
