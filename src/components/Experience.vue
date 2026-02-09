@@ -1,14 +1,12 @@
 <script setup>
 import { ref, computed } from 'vue';
 
-// --- 1. NAVIGATION & LANGUE ---
 import { globalState } from '../state.js';
 
 // --- 1. NAVIGATION & LANGUE ---
 const currentLang = computed(() => globalState.lang);
 
 // --- 2. DONNÉES (ÉDUCATION) ---
-// On utilise une fonction computed pour que le texte change quand la langue change
 const educationData = computed(() => {
   const isEn = currentLang.value === 'en';
   return [
@@ -56,7 +54,6 @@ const educationData = computed(() => {
 });
 
 // --- 3. DONNÉES (EXPÉRIENCE PRO) ---
-// Structure spéciale pour gérer les sections déroulantes (collapsible)
 const experienceData = ref([
   {
     id: 1,
@@ -65,9 +62,8 @@ const experienceData = ref([
     company: "Inspire JE",
     locationFr: "Saint-Étienne, France - Actuellement...",
     locationEn: "Saint-Étienne, France - Currently...",
-    logo: "/images/inspire.png", // Assure-toi que l'image est là
+    logo: "/images/inspire.png", 
     link: "https://inspire-telecom.com",
-    // Sections déroulantes
     sections: [
       {
         titleFr: "Qu'est-ce qu'une Junior Entreprise ?",
@@ -149,7 +145,6 @@ const experienceData = ref([
   }
 ]);
 
-// Fonction pour basculer l'ouverture d'une section spécifique
 const toggleSection = (expIndex, sectionIndex) => {
   experienceData.value[expIndex].sections[sectionIndex].isOpen = !experienceData.value[expIndex].sections[sectionIndex].isOpen;
 };
@@ -243,14 +238,6 @@ const t = computed(() => {
 </template>
 
 <style scoped>
-/* ======================== */
-/* 1. GLOBAL LAYOUT */
-/* ======================== */
-/* ======================== */
-/* 1. GLOBAL LAYOUT CLEANUP */
-/* ======================== */
-/* Styles moved to main.css */
-/* Minimal specific styles for Experience */
 .experience-content {
   width: 100%;
 }
@@ -264,11 +251,6 @@ const t = computed(() => {
 .delay-2 { animation-delay: 0.4s; }
 @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 
-/* ======================== */
-/* 2. STYLE EXPERIENCE.CSS */
-/* ======================== */
-
-/* --- Timeline Styles --- */
 .timeline {
     position: relative;
     padding-left: 20px;
@@ -282,7 +264,7 @@ const t = computed(() => {
 
 .timeline-marker {
     position: absolute;
-    left: -26px; /* Ajusté pour centrer sur la ligne */
+    left: -26px; 
     top: 5px;
     width: 14px;
     height: 14px;
@@ -350,7 +332,6 @@ const t = computed(() => {
     margin-bottom: 5px;
 }
 
-/* --- Tech Tags --- */
 .tech-tags {
     display: flex;
     flex-wrap: wrap;
@@ -367,7 +348,6 @@ const t = computed(() => {
     border: 1px solid rgba(176, 232, 167, 0.2);
 }
 
-/* --- Cards Grid (Experience) --- */
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -419,7 +399,6 @@ const t = computed(() => {
     border-radius: 8px;
 }
 
-/* --- Accordion / Toggle --- */
 .accordion-group {
     margin-top: 15px;
     border-top: 1px solid #333;
@@ -459,7 +438,6 @@ const t = computed(() => {
     border-radius: 8px;
     font-size: 0.9rem;
     color: #ccc;
-    /* L'animation est gérée par JS (v-show) mais on peut ajouter un fade */
     animation: fadeIn 0.3s ease;
 }
 
@@ -472,7 +450,6 @@ const t = computed(() => {
     margin-bottom: 5px;
 }
 
-/* Responsive Specific */
 @media (max-width: 600px) {
     .timeline { padding-left: 15px; }
     .timeline-marker { left: -21px; }
