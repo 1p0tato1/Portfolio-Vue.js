@@ -3,9 +3,8 @@ import { ref, computed, onMounted } from 'vue';
 import { globalState } from '../state.js';
 
 // --- 1. CONFIGURATION ---
-const showProgress = ref(false); // Pour déclencher l'animation des barres
+const showProgress = ref(false); 
 
-// Déclencher l'animation après le chargement de la page
 onMounted(() => {
   setTimeout(() => {
     showProgress.value = true;
@@ -16,11 +15,10 @@ onMounted(() => {
 const t = computed(() => {
   const isEn = globalState.lang === 'en';
   return {
-    // Header
     title: isEn ? 'Skills' : 'Compétences',
     subtitle: isEn ? 'Discover the skills I have acquired throughout my journey' : 'Découvrez les compétences que j\'ai acquises tout au long de mon parcours',
     
-    // Section 1: Values
+    // Values
     valTitle: isEn ? 'My Values' : 'Mes Valeurs',
     values: [
       { 
@@ -45,7 +43,7 @@ const t = computed(() => {
       }
     ],
 
-    // Section 2: Expertise Lists
+    // Expertise Lists
     expTitle: isEn ? 'Skills & Expertise' : 'Compétences & Expertise',
     techTitle: isEn ? 'Technical Skills' : 'Compétences Techniques',
     softTitle: isEn ? 'Soft Skills' : 'Compétences Humaines',
@@ -56,10 +54,10 @@ const t = computed(() => {
         design: isEn ? 'Design Software' : 'Logiciels de Design'
     },
     softList: isEn 
-        ? ['Teamwork & Collaboration', 'Adaptability & Versatility', 'Leadership & Mentoring', 'Creativity & Innovation', 'Continuous Learning', 'Problem Solving', 'Communication Skills']
-        : ['Travail d\'Équipe & Collaboration', 'Adaptabilité & Polyvalence', 'Leadership & Mentorat', 'Créativité & Innovation', 'Apprentissage Continu', 'Résolution de Problèmes', 'Compétences en Communication'],
+        ? ['Teamwork & Collaboration', 'Adaptability & Versatility', 'Agile Method', 'Creativity & Innovation', 'Continuous Learning', 'Problem Solving', 'Communication Skills']
+        : ['Travail d\'Équipe & Collaboration', 'Adaptabilité & Polyvalence', 'Méthode Agile', 'Créativité & Innovation', 'Apprentissage Continu', 'Résolution de Problèmes', 'Compétences en Communication'],
 
-    // Section 3: Progress Bars Categories
+    // Progress Bars Categories
     evalTitle: isEn ? 'Personal Assessment' : 'Évaluation Personnelle',
     progCats: {
         web: isEn ? 'Web Development' : 'Développement Web',
@@ -76,9 +74,8 @@ const t = computed(() => {
   };
 });
 
-// Données statiques pour les listes techniques
 const techSkills = {
-    langs: ['Python', 'C++', 'HTML', 'CSS'],
+    langs: ['Python', 'C++', 'HTML', 'CSS', 'JavaScript', 'TypeScript', 'JAVA'],
     tools: ['Git & GitHub', 'VSCode', 'Linux'],
     db: ['MySQL', 'Python for ML', 'Data Analysis'],
     design: ['Canva', 'Adobe Illustrator', 'Adobe Photoshop']
@@ -172,20 +169,26 @@ const techSkills = {
                             <div class="skill-progress" :style="{ width: showProgress ? '40%' : '0%' }"></div>
                         </div>
                     </div>
+                    <div class="skill-bar">
+                        <span class="skill-name">TypeScript</span>
+                        <div class="skill-track">
+                            <div class="skill-progress" :style="{ width: showProgress ? '5%' : '0%' }"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="skill-category">
                     <h3>{{ t.progCats.ml }}</h3>
                     <div class="skill-bar">
-                        <span class="skill-name">Python <i>(Pandas, Scikit-learn)</i></span>
+                        <span class="skill-name">Python <i>(Pandas, Scikit-learn...)</i></span>
                         <div class="skill-track">
-                            <div class="skill-progress" :style="{ width: showProgress ? '40%' : '0%' }"></div>
+                            <div class="skill-progress" :style="{ width: showProgress ? '60%' : '0%' }"></div>
                         </div>
                     </div>
                     <div class="skill-bar">
                         <span class="skill-name">SQL</span>
                         <div class="skill-track">
-                            <div class="skill-progress" :style="{ width: showProgress ? '25%' : '0%' }"></div>
+                            <div class="skill-progress" :style="{ width: showProgress ? '40%' : '0%' }"></div>
                         </div>
                     </div>
                 </div>
@@ -202,6 +205,12 @@ const techSkills = {
                         <span class="skill-name">C++</span>
                         <div class="skill-track">
                             <div class="skill-progress" :style="{ width: showProgress ? '50%' : '0%' }"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <span class="skill-name">Java</span>
+                        <div class="skill-track">
+                            <div class="skill-progress" :style="{ width: showProgress ? '20%' : '0%' }"></div>
                         </div>
                     </div>
                 </div>
@@ -241,9 +250,6 @@ const techSkills = {
 </template>
 
 <style scoped>
-/* ======================== */
-/* 1. STYLES GLOBAUX */
-/* ======================== */
 .skills-content { width: 100%; }
 .page-header { margin-bottom: 3rem; text-align: center; }
 .page-title { font-size: 2.5rem; margin-bottom: 0.5rem; background: linear-gradient(90deg, #fff, #b0e8a7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -256,11 +262,7 @@ const techSkills = {
 .delay-3 { animation-delay: 0.6s; }
 @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 
-/* ======================== */
-/* 2. STYLE SKILLS.CSS */
-/* ======================== */
 
-/* --- Valeurs (Cards) --- */
 .cards-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;
 }
@@ -272,7 +274,6 @@ const techSkills = {
 .card h3 { color: #fff; margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
 .card p { color: #ccc; line-height: 1.6; }
 
-/* --- Expertise (Enhanced Cards) --- */
 .enhanced-cards-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;
 }
@@ -294,6 +295,7 @@ const techSkills = {
     background: rgba(255,255,255,0.05); padding: 5px 12px; border-radius: 15px;
     font-size: 0.9rem; color: #ccc; border: 1px solid rgba(255,255,255,0.1);
     transition: all 0.3s;
+    user-select: none;
 }
 .skill-list li:hover { background: rgba(176,232,167,0.1); border-color: #b0e8a7; color: #fff; }
 
@@ -303,7 +305,7 @@ const techSkills = {
 }
 .bullet { color: #b0e8a7; font-size: 1.2rem; }
 
-/* --- Progress Bars --- */
+
 .skills-container {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px;
 }
@@ -326,7 +328,8 @@ const techSkills = {
     border-radius: 4px; width: 0; transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
 }
-/* Effet de brillance qui passe sur la barre */
+
+
 .skill-progress::after {
     content: ''; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
