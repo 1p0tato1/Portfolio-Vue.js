@@ -243,4 +243,8 @@ const t = computed(() => translations[currentLang.value]);
     50% { box-shadow: 0 8px 35px rgba(255, 255, 255, 0.5); }
 }
 .download-tag:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(176, 232, 167, 0.4); }
+
+.cert-content .downloads {
+    justify-content: center;
+}
 </style>
