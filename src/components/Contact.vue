@@ -1,7 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
 
-// --- 1. NAVIGATION & LANGUE ---
 import { globalState } from '../state.js';
 
 // --- 1. NAVIGATION & LANGUE ---
@@ -22,7 +21,6 @@ const formStatus = ref({
   error: false
 });
 
-// Compteur de caractères pour le message
 const maxChar = 1000;
 const charCount = computed(() => formData.value.message.length);
 const isCharLimitWarning = computed(() => charCount.value > maxChar * 0.9);
@@ -30,13 +28,12 @@ const isCharLimitWarning = computed(() => charCount.value > maxChar * 0.9);
 // --- 3. DICTIONNAIRE DE TRADUCTION ---
 const translations = {
   fr: {
-    // Nav
     menu: { home: 'Accueil', exp: 'Éducation & Exp.', skills: 'Compétences', certs: 'Diplômes & Certifs', projects: 'Projets', contact: 'Contact' },
     role: 'Étudiant',
-    // Header
+
     title: 'Me Contacter',
     subtitle: "N'hésitez pas à me contacter en utilisant le formulaire ci-dessous.",
-    // Cards
+
     contactInfo: 'Informations de Contact',
     emailLabel: 'Email',
     emailAction: 'Envoyer un Email',
@@ -48,7 +45,7 @@ const translations = {
     availLabel: 'Disponibilité',
     availValue: 'Ouvert aux opportunités',
     availAction: 'Collaborons ensemble',
-    // Form
+
     formTitle: 'Envoyez-moi un Message',
     formDesc: "Vous avez un projet en tête ou souhaitez discuter d'opportunités ? J'aimerais beaucoup vous entendre !",
     lblDetails: "Nom Complet *",
@@ -60,7 +57,7 @@ const translations = {
     btnSend: "Envoyer le Message",
     btnLoading: "Envoi en cours...",
     btnReset: "Effacer le Formulaire",
-    // Options Sujet
+
     subjects: {
       def: 'Sélectionnez un sujet',
       project: 'Demande de Projet',
@@ -70,7 +67,7 @@ const translations = {
       general: 'Question Générale',
       other: 'Autre'
     },
-    // Messages
+
     successTitle: "Client Email Ouvert !",
     successText: "Votre client email devrait s'être ouvert avec le message pré-rempli. Veuillez envoyer l'email depuis votre client pour terminer.",
     errorTitle: "Champs manquants",
@@ -78,13 +75,12 @@ const translations = {
     socialTitle: "Connectez-vous avec Moi"
   },
   en: {
-    // Nav
     menu: { home: 'Welcome', exp: 'Education & Exp.', skills: 'Skills', certs: 'Diplomas & Certifs', projects: 'Projects', contact: 'Contact' },
     role: 'Student',
-    // Header
+
     title: 'Get In Touch',
     subtitle: "Feel free to reach out using the form below.",
-    // Cards
+
     contactInfo: 'Contact Information',
     emailLabel: 'Email',
     emailAction: 'Send an Email',
@@ -96,7 +92,7 @@ const translations = {
     availLabel: 'Availability',
     availValue: 'Open for opportunities',
     availAction: "Let's collaborate",
-    // Form
+
     formTitle: 'Send Me a Message',
     formDesc: "Have a project in mind or want to discuss opportunities? I'd love to hear from you!",
     lblDetails: "Full Name *",
@@ -108,7 +104,7 @@ const translations = {
     btnSend: "Send Message",
     btnLoading: "Sending...",
     btnReset: "Clear Form",
-    // Options Sujet
+
     subjects: {
       def: 'Select a subject',
       project: 'Project Inquiry',
@@ -118,7 +114,7 @@ const translations = {
       general: 'General Question',
       other: 'Other'
     },
-    // Messages
+
     successTitle: "Email Client Opened!",
     successText: "Your email client should have opened with the message pre-filled. Please send the email from your email client to complete the process.",
     errorTitle: "Please Fill Required Fields",
@@ -131,8 +127,8 @@ const t = computed(() => translations[currentLang.value]);
 
 // --- 4. LOGIQUE DE SOUMISSION (MAILTO) ---
 const handleSubmit = () => {
-  // Validation simple
-  if (!formData.value.name || !formData.value.email || !formData.value.subject || !formData.value.message) {
+
+    if (!formData.value.name || !formData.value.email || !formData.value.subject || !formData.value.message) {
     formStatus.value.error = true;
     formStatus.value.success = false;
     setTimeout(() => formStatus.value.error = false, 4000);
@@ -142,7 +138,7 @@ const handleSubmit = () => {
   formStatus.value.loading = true;
   formStatus.value.error = false;
 
-  // Création du corps de l'email
+
   const emailSubject = `Contact Portfolio: ${formData.value.subject}`;
   const emailBody = `Bonjour Hakim,
 
@@ -160,16 +156,13 @@ ${formData.value.message}
 Cordialement,
 ${formData.value.name}`;
 
-  // Construction du lien mailto
-  const mailtoLink = `mailto:hfayala53@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+const mailtoLink = `mailto:hfayala53@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
 
-  // Simulation d'un petit délai pour l'UX
   setTimeout(() => {
     window.location.href = mailtoLink;
     formStatus.value.loading = false;
     formStatus.value.success = true;
     
-    // Reset du formulaire après succès
     formData.value = { name: '', email: '', company: '', subject: '', message: '' };
     
     setTimeout(() => formStatus.value.success = false, 5000);
@@ -311,14 +304,7 @@ const handleReset = () => {
 </template>
 
 <style scoped>
-/* ======================== */
-/* 1. GLOBAL LAYOUT (Standard) */
-/* ======================== */
-/* ======================== */
-/* 1. GLOBAL LAYOUT CLEANUP */
-/* ======================== */
-/* Styles moved to main.css */
-/* Minimal specific styles for Contact */
+
 .contact-content {
   width: 100%;
 }
@@ -334,9 +320,7 @@ const handleReset = () => {
 .fade-in { animation: fadeIn 0.8s ease forwards; opacity: 0; transform: translateY(20px); }
 @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 
-/* ======================== */
-/* 2. STYLE CONTACT SPÉCIFIQUE (Fusion de ton CSS) */
-/* ======================== */
+
 .contact-container {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -349,7 +333,7 @@ const handleReset = () => {
     display: flex; flex-direction: column; gap: 40px;
 }
 
-/* --- Cards --- */
+
 .contact-info { position: sticky; top: 20px; }
 .contact-cards { display: grid; gap: 20px; margin-top: 30px; }
 
@@ -396,7 +380,7 @@ const handleReset = () => {
 }
 .contact-link:hover { color: #b0e8a7; }
 
-/* --- Form --- */
+
 .contact-form-section {
     background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
     border-radius: 20px; padding: 40px; border: 1px solid #333;
@@ -429,7 +413,7 @@ const handleReset = () => {
     border-bottom-color: #b0e8a7;
 }
 
-/* Animated focus line */
+
 .form-focus-line {
     position: absolute; bottom: 0; left: 50%; width: 0; height: 2px;
     background: linear-gradient(135deg, #b0e8a7, #8ac582);
@@ -444,7 +428,7 @@ const handleReset = () => {
     color: #b0e8a7; transform: translateY(-5px); font-size: 0.9rem;
 }
 
-/* Select Arrow */
+
 .form-group select {
     cursor: pointer; appearance: none;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b0e8a7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
@@ -452,7 +436,7 @@ const handleReset = () => {
 }
 .form-group select option { background: #1a1a1a; color: #fff; padding: 10px; }
 
-/* Textarea */
+
 .form-group textarea { resize: vertical; min-height: 120px; padding-top: 15px; line-height: 1.6; }
 
 .char-counter {
@@ -460,7 +444,7 @@ const handleReset = () => {
 }
 .char-counter.warning { color: #FF9800; }
 
-/* Form Actions */
+
 .form-actions {
     grid-column: 1 / -1; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-top: 30px;
 }
@@ -470,8 +454,6 @@ const handleReset = () => {
     font-family: inherit; font-size: 15px; min-width: 160px;
 }
 
-/* 3D Primary Button */
-/* 3D Primary Button REMOVED - Flat Style */
 .btn-primary {
     font-weight: 600; color: #121212; text-transform: uppercase; padding: 1.25em 2em;
     background: #b0e8a7; border: 2px solid #b0e8a7;
@@ -487,7 +469,7 @@ const handleReset = () => {
     transform: translateY(0);
 }
 
-/* Secondary Button */
+
 .btn-secondary {
     font-weight: 600; color: #b0e8a7; text-transform: uppercase; padding: 1.25em 2em;
     background: transparent; border: 2px solid #8ac582; border-radius: 0.75em;
@@ -495,7 +477,6 @@ const handleReset = () => {
 }
 .btn-secondary:hover { background: rgba(0, 0, 0, 0); transform: translate(0, 0.25em); }
 
-/* Loading */
 .btn.loading .btn-text { opacity: 0; }
 .btn-loading { position: absolute; opacity: 0; transition: opacity 0.3s ease; }
 .btn.loading .btn-loading { opacity: 1; }
@@ -505,7 +486,6 @@ const handleReset = () => {
     border-top: 2px solid currentColor; border-radius: 50%; animation: spin 1s linear infinite; right: 20px;
 }
 
-/* Messages */
 .success-message, .error-message {
     position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8);
     background: linear-gradient(135deg, #1a1a1a, #0d0d0d); border-radius: 20px; padding: 40px;
@@ -529,7 +509,6 @@ const handleReset = () => {
 .success-content h3, .error-content h3 { color: #b0e8a7; font-size: 1.5rem; margin-bottom: 15px; }
 .success-content p, .error-content p { color: #ccc; font-size: 1.1rem; line-height: 1.6; }
 
-/* Social */
 .social-links { display: flex; justify-content: center; gap: 30px; margin-top: 30px; flex-wrap: wrap; }
 .social-link {
     display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 20px;
