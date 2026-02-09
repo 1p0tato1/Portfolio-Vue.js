@@ -221,7 +221,8 @@ const handleReset = () => {
                 </div>
             </div>
 
-            <div class="contact-form-section fade-in">
+            <div class="form-column">
+              <div class="contact-form-section fade-in">
                 <h2 class="section-title">{{ t.formTitle }}</h2>
                 <p class="form-description">{{ t.formDesc }}</p>
 
@@ -304,7 +305,7 @@ const handleReset = () => {
                     </a>
                 </div>
             </div>
-
+        </div>
         </div>
       </main>
 </template>
@@ -342,6 +343,10 @@ const handleReset = () => {
     gap: 50px;
     margin: 40px 0;
     align-items: start;
+}
+.form-column {
+    grid-column: 2;
+    display: flex; flex-direction: column; gap: 40px;
 }
 
 /* --- Cards --- */
@@ -410,7 +415,7 @@ const handleReset = () => {
     position: relative; z-index: 1;
 }
 .form-group { position: relative; margin-bottom: 10px; }
-.form-group-full { grid-column: 1 / -1; }
+.form-group-full { grid-column: 1 / -1; margin-bottom: 30px; }
 
 .form-group label {
     display: block; font-size: 0.95rem; color: #b0e8a7; margin-bottom: 8px; font-weight: bold; transition: all 0.3s ease;
@@ -466,28 +471,20 @@ const handleReset = () => {
 }
 
 /* 3D Primary Button */
+/* 3D Primary Button REMOVED - Flat Style */
 .btn-primary {
     font-weight: 600; color: #121212; text-transform: uppercase; padding: 1.25em 2em;
-    background: linear-gradient(135deg, #bdffb6, #6ead66); border: 2px solid #8ac582;
-    border-radius: 0.75em; transform-style: preserve-3d;
-    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
+    background: #b0e8a7; border: 2px solid #b0e8a7;
+    border-radius: 0.75em;
+    transition: all 0.3s ease;
 }
-.btn-primary::before {
-    position: absolute; content: ''; width: 100%; height: 100%; top: 0; left: 0; right: 0; bottom: 0;
-    background: #b0e8a7; border-radius: inherit;
-    box-shadow: 0 0 0 2px #8ac582, 0 0.625em 0 0 #e8f7e5;
-    transform: translate3d(0, 0.75em, -1em);
-    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+.btn-primary:hover {
+    background: #9bd690; border-color: #9bd690;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(176, 232, 167, 0.3);
 }
-.btn-primary:hover { background: #f2faf0; transform: translate(0, 0.25em); }
-.btn-primary:hover::before {
-    box-shadow: 0 0 0 2px #8ac582, 0 0.5em 0 0 #e8f7e5;
-    transform: translate3d(0, 0.5em, -1em);
-}
-.btn-primary:active { background: #f2faf0; transform: translate(0em, 0.75em); }
-.btn-primary:active::before {
-    box-shadow: 0 0 0 2px #8ac582, 0 0 #e8f7e5;
-    transform: translate3d(0, 0, -1em);
+.btn-primary:active {
+    transform: translateY(0);
 }
 
 /* Secondary Button */
