@@ -17,12 +17,12 @@ const educationData = computed(() => {
       location: "",
       date: isEn ? "2024 - Present" : "2024 - Présent",
       desc: isEn 
-        ? "As an engineering student, I am developing strong skills in computer science, cybersecurity, and AI. My studies combine theoretical knowledge with practical projects."
-        : "En tant qu'étudiant en ingénierie, je développe de solides compétences en informatique, cybersécurité et intelligence artificielle. Mes études combinent connaissances théoriques et projets pratiques.",
+        ? "As an engineering student, I am developing strong skills in computer science, data science, and AI. My studies combine theoretical knowledge with practical projects."
+        : "En tant qu'étudiant en ingénierie, je développe de solides compétences en informatique, science des données et intelligence artificielle. Mes études combinent connaissances théoriques et projets pratiques.",
       bullets: isEn 
-        ? ["C++, Python, HTML, CSS, JS Programming", "Cybersecurity fundamentals", "Collaborative engineering projects", "Data analysis & Mathematics"]
-        : ["Programmation C++, Python, HTML, CSS, JS", "Fondamentaux de la cybersécurité", "Projets d'ingénierie collaboratifs", "Analyse de données & Mathématiques"],
-      tags: ["C++", "HTML", "CSS", "Git", "Cybersec"]
+        ? ["C++, Python, HTML, CSS, JS, JAVA, SQL, Git", "Cybersecurity fundamentals", "Collaborative engineering projects", "Data analysis & Mathematics"]
+        : ["C++, Python, HTML, CSS, JS, JAVA, SQL, Git", "Fondamentaux de la cybersécurité", "Projets d'ingénierie collaboratifs", "Analyse de données & Mathématiques"],
+      tags: ["C++", "HTML", "CSS", "JS", "JAVA", "SQL", "Git"]
     },
     {
       id: 2,
