@@ -390,10 +390,11 @@ const t = computed(() => {
 }
 
 .card-logo {
+    display: block;
     height: 60px;
     width: auto;
     object-fit: contain;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
     background: rgba(255,255,255,0.9);
     padding: 5px;
     border-radius: 8px;
