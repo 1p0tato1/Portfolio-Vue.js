@@ -1,20 +1,16 @@
 <script setup>
 import { ref, computed } from 'vue';
-
-// --- 1. NAVIGATION & LANGUE ---
 import { globalState } from '../state.js';
 
 // --- 1. NAVIGATION & LANGUE ---
 const currentLang = computed(() => globalState.lang);
 
-// --- 2. DONNÉES PROJETS (Bilingue) ---
-// computed pour que le texte change dynamiquement
+// --- 2. DONNÉES PROJETS ---
 const projects = computed(() => {
   const isEn = currentLang.value === 'en';
   return [
     {
       id: 1,
-      // Note : J'ai harmonisé les titres pour qu'ils soient cohérents
       title: isEn ? "Website Creation & SEO" : "Création Site Web & SEO",
       desc: isEn 
         ? "Designed a functional website and enhanced its SEO to improve search visibility with my classmate."
@@ -23,7 +19,7 @@ const projects = computed(() => {
       tags: ["HTML", "CSS", "JS", "SEO"],
       status: isEn ? "Completed" : "Terminé",
       statusClass: "completed",
-      // Back Details
+
       roleLabel: isEn ? "Role:" : "Rôle :",
       role: isEn ? "Dev & Designer" : "Dev & Designer",
       timeLabel: isEn ? "Timeline:" : "Durée :",
@@ -39,6 +35,8 @@ const projects = computed(() => {
         { label: "GitHub", url: "https://github.com/1p0tato1/SEO-Competition" }
       ]
     },
+
+
     {
       id: 2,
       title: isEn ? "Falling Sand Game" : "Jeu Falling Sand",
@@ -49,7 +47,7 @@ const projects = computed(() => {
       tags: ["C++", "SFML"],
       status: isEn ? "Completed" : "Terminé",
       statusClass: "completed",
-      // Back Details
+
       roleLabel: isEn ? "Role:" : "Rôle :",
       role: isEn ? "Developer" : "Développeur",
       timeLabel: isEn ? "Timeline:" : "Durée :",
@@ -64,9 +62,10 @@ const projects = computed(() => {
         { label: "GitHub", url: "https://github.com/Noanono/project_fall_sand" }
       ]
     },
+
+
     {
       id: 3,
-      // Correction du titre "Analytical Dashboard" qui semblait être une erreur dans ton HTML d'origine pour un jeu Pokemon
       title: isEn ? "Pokémon Game Recreation" : "Recréation Jeu Pokémon", 
       desc: isEn
         ? "Recreation of core mechanics from the classic Pokemon game, including battles, evolutions, and a Pokedex system."
@@ -75,7 +74,7 @@ const projects = computed(() => {
       tags: ["C++"],
       status: isEn ? "SUSPENDED" : "SUSPENDU",
       statusClass: "suspended",
-      // Back Details
+
       roleLabel: isEn ? "Role:" : "Rôle :",
       role: isEn ? "Developer" : "Développeur",
       timeLabel: isEn ? "Year:" : "Année :",
@@ -94,7 +93,7 @@ const projects = computed(() => {
   ];
 });
 
-// --- 3. LOGIQUE CAROUSEL ---
+// --- LOGIQUE CAROUSEL ---
 const currentProjectIndex = ref(0);
 
 const nextProject = () => {
@@ -124,17 +123,16 @@ const handleTouchEnd = (e) => {
 
 const handleSwipe = () => {
   const diff = touchStartX - touchEndX;
-  if (Math.abs(diff) > 50) { // Seuil minimum
-    if (diff > 0) nextProject(); // Swipe gauche -> Suivant
-    else prevProject(); // Swipe droite -> Précédent
+  if (Math.abs(diff) > 50) { 
+    if (diff > 0) nextProject(); 
+    else prevProject(); 
   }
 };
 
-// Calcul des classes CSS pour l'animation du carousel
+
 const getProjectClass = (index) => {
   if (index === currentProjectIndex.value) return 'active';
   const total = projects.value.length;
-  // Calculer si c'est le précédent ou le suivant (boucle circulaire)
   const prevIndex = (currentProjectIndex.value - 1 + total) % total;
   const nextIndex = (currentProjectIndex.value + 1) % total;
   
@@ -143,7 +141,7 @@ const getProjectClass = (index) => {
   return '';
 };
 
-// --- 4. TRADUCTIONS GLOBALES ---
+// --- TRADUCTIONS GLOBALES ---
 const t = computed(() => {
   const isEn = currentLang.value === 'en';
   return {
@@ -263,14 +261,6 @@ const t = computed(() => {
 </template>
 
 <style scoped>
-/* ======================== */
-/* 1. GLOBAL LAYOUT (Standard) */
-/* ======================== */
-/* ======================== */
-/* 1. GLOBAL LAYOUT CLEANUP */
-/* ======================== */
-/* Styles moved to main.css */
-/* Minimal specific styles for Projects */
 .projects-content {
   width: 100%;
 }
@@ -284,11 +274,7 @@ const t = computed(() => {
 .delay-1 { animation-delay: 0.2s; }
 @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 
-/* =========================================
-   2. STYLES PROJECTS.CSS (Ton code intégré)
-   ========================================= */
 
-/* Carousel Container */
 .carousel-container {
     position: relative;
     max-width: 900px;
@@ -304,7 +290,6 @@ const t = computed(() => {
     transform-style: preserve-3d;
 }
 
-/* Navigation Buttons */
 .carousel-nav {
     position: absolute;
     top: 50%;
@@ -324,7 +309,6 @@ const t = computed(() => {
 .carousel-nav.prev { left: 0; }
 .carousel-nav.next { right: 0; }
 
-/* Indicators */
 .carousel-indicators {
     display: flex; justify-content: center; gap: 10px; margin-top: 30px;
 }
@@ -333,7 +317,6 @@ const t = computed(() => {
 }
 .indicator.active { background: #b0e8a7; transform: scale(1.2); box-shadow: 0 0 10px rgba(176, 232, 167, 0.5); }
 
-/* Project Wrapper & Transitions */
 .project-wrapper {
     position: absolute;
     top: 0; left: 0;
@@ -347,11 +330,10 @@ const t = computed(() => {
 .project-wrapper.active {
     opacity: 1; visibility: visible; transform: scale(1) translateX(0); z-index: 2;
 }
-/* Effet visuel pour les éléments précédents/suivants (optionnel, selon ton design) */
+
 .project-wrapper.prev { opacity: 0; transform: scale(0.8) translateX(-100px); z-index: 1; }
 .project-wrapper.next { opacity: 0; transform: scale(0.8) translateX(100px); z-index: 1; }
 
-/* 3D Card */
 .project-card-3d {
     width: 100%; height: 100%; perspective: 1500px;
 }
@@ -359,7 +341,7 @@ const t = computed(() => {
     position: relative; width: 100%; height: 100%;
     text-align: center; transition: transform 0.8s; transform-style: preserve-3d;
 }
-/* Flip Effect on Hover */
+
 .project-card-3d:hover .project-card-inner { transform: rotateY(180deg); }
 
 .project-card-front, .project-card-back {
@@ -370,7 +352,7 @@ const t = computed(() => {
     background: #1a1a1a; border: 1px solid #333;
 }
 
-/* Front Face */
+
 .project-card-front {
     display: flex; flex-direction: column;
 }
@@ -398,7 +380,7 @@ const t = computed(() => {
 .project-status.completed { background: rgba(76, 175, 80, 0.2); color: #4CAF50; border: 1px solid #4CAF50; }
 .project-status.suspended { background: rgba(244, 67, 54, 0.2); color: #F44336; border: 1px solid #F44336; }
 
-/* Back Face */
+
 .project-card-back {
     transform: rotateY(180deg); background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
     padding: 40px 30px; display: flex; align-items: center; justify-content: center;
@@ -440,10 +422,8 @@ const t = computed(() => {
     .carousel-nav.next { right: 20px; left: auto; }
 }
 @media (max-width: 600px) {
-    .projects-carousel { height: 600px; } /* Plus haut sur mobile pour tout afficher */
-    .project-card-inner { transform: none !important; } /* Désactiver le flip 3D au survol sur mobile */
-    /* Sur mobile, on affiche peut-être juste le front ou on adapte, ici je laisse le comportement par défaut mais sans le flip automatique */
-    .project-card-back { display: none; } /* Simplification pour mobile : on cache le dos ou on met un bouton 'Détails' */
-    /* Pour une vraie version mobile, l'idéal est de mettre un bouton "Voir détails" qui tourne la carte manuellement */
+    .projects-carousel { height: 600px; }
+    .project-card-inner { transform: none !important; }
+    .project-card-back { display: none; }
 }
 </style>
