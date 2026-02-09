@@ -15,7 +15,7 @@ const educationData = computed(() => {
       title: isEn ? "Engineering Student" : "Étudiant en Ingénierie",
       school: "Télécom Saint-Étienne",
       location: "",
-      date: isEn ? "2024 - Present" : "2024 - Présent",
+      date: isEn ? "2024 - 2027" : "2024 - 2027",
       desc: isEn 
         ? "As an engineering student, I am developing strong skills in computer science, data science, and AI. My studies combine theoretical knowledge with practical projects."
         : "En tant qu'étudiant en ingénierie, je développe de solides compétences en informatique, science des données et intelligence artificielle. Mes études combinent connaissances théoriques et projets pratiques.",
