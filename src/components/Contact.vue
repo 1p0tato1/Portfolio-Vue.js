@@ -292,7 +292,7 @@ const handleReset = () => {
                         <div class="social-icon"><i class="fab fa-linkedin-in"></i></div>
                         <span>LinkedIn</span>
                     </a>
-                     <a href="https://github.com/hfayala" target="_blank" class="social-link">
+                     <a href="https://github.com/1p0tato1" target="_blank" class="social-link">
                         <div class="social-icon"><i class="fab fa-github"></i></div>
                         <span>GitHub</span>
                     </a>
