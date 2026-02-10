@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import Sidebar from './components/Sidebar.vue';
 import LanguageSwitcher from './components/LanguageSwitcher.vue';
+import Footer from './components/Footer.vue';
 
 // Importation des pages (Composants)
 import Home from './components/Home.vue';
@@ -48,13 +49,22 @@ const setPage = (pageName) => {
       <Contact v-if="currentPage === 'Contact'" />
       <Skills v-if="currentPage === 'Skills'" />
       <Projects v-if="currentPage === 'Projects'" />
-      </div>
+    </div>
+    
+    <Footer />
   </div>
 </template>
 
 <style>
 /* Importation du CSS Global */
 @import './assets/main.css';
+
+/* App container for footer positioning */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
 /* Ajustement pour que le bouton burger reste visible au-dessus de tout */
 .nav-toggle {
