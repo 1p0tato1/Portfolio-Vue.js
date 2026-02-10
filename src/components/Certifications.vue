@@ -23,7 +23,7 @@ const translations = {
       "<strong>Electrical Engineering –</strong> circuits, electronics, and energy systems.",
       "<strong>Computer Science –</strong> introduction to algorithms and programming."
     ],
-    bacDownload: "Download French Version",
+    bacDownload: "View Diploma (French Only)",
     section2: "Online Learning",
     kaggleTitle: "Kaggle's Online Courses Certifications",
     kaggleDate: "Issued: Summer 2025",
@@ -49,7 +49,7 @@ const translations = {
       "<strong>Génie Électrique –</strong> circuits, électronique et systèmes énergétiques.",
       "<strong>Informatique –</strong> introduction aux algorithmes et à la programmation."
     ],
-    bacDownload: "Télécharger Version Française",
+    bacDownload: "Voir le Diplôme (Français)",
     section2: "Apprentissage en Ligne",
     kaggleTitle: "Certifications des Cours en Ligne Kaggle",
     kaggleDate: "Délivré : Été 2025",
@@ -88,8 +88,8 @@ const t = computed(() => translations[currentLang.value]);
                 </div>
                 
                 <div class="downloads">
-                  <a class="download-tag" href="/documents/Diplome-bac-fr.pdf" download>
-                    <i class="fas fa-download"></i> {{ t.bacDownload }}
+                  <a class="download-tag" href="/pdfs/Diplome-bac-fr.pdf" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> {{ t.bacDownload }}
                   </a>
                 </div>
               </div>
@@ -119,8 +119,8 @@ const t = computed(() => translations[currentLang.value]);
                 </div>
                 
                 <div class="downloads">
-                  <a class="download-tag" href="/documents/Kaggle-certifs.pdf" download>
-                    <i class="fas fa-download"></i> {{ t.kaggleDownload }}
+                  <a class="download-tag" href="/pdfs/Certfis-Kaggle.pdf" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> {{ t.kaggleDownload }}
                   </a>
                 </div>
               </div>

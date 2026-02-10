@@ -88,7 +88,6 @@ const toggleCard = () => {
             <div class="social-grid">
                 <a href="#https://github.com/1p0tato1" class="social-btn"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/hakim-fayala/" class="social-btn"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
 
             </div>
           </div>
