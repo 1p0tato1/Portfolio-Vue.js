@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watch, computed } from 'vue';
+import { globalState } from './state.js';
 import Sidebar from './components/Sidebar.vue';
 import LanguageSwitcher from './components/LanguageSwitcher.vue';
 import Footer from './components/Footer.vue';
@@ -24,6 +25,36 @@ const setPage = (pageName) => {
   currentPage.value = pageName;
   window.scrollTo(0, 0); // Remonter en haut de page
 };
+
+// Titres de pages en français et anglais
+const pageTitles = {
+  en: {
+    Home: 'Home',
+    Experience: 'Experience',
+    Certifications: 'Certifications',
+    Contact: 'Contact',
+    Skills: 'Skills',
+    Projects: 'Projects'
+  },
+  fr: {
+    Home: 'Accueil',
+    Experience: 'Expérience',
+    Certifications: 'Certifications',
+    Contact: 'Contact',
+    Skills: 'Compétences',
+    Projects: 'Projets'
+  }
+};
+
+// Mise à jour dynamique du titre de la page
+const updatePageTitle = () => {
+  const lang = globalState.lang;
+  const pageTitle = pageTitles[lang][currentPage.value] || currentPage.value;
+  document.title = `${pageTitle} - Fayala`;
+};
+
+// Surveiller les changements de page et de langue
+watch([currentPage, () => globalState.lang], updatePageTitle, { immediate: true });
 </script>
 
 <template>
