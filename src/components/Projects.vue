@@ -9,7 +9,34 @@ const currentLang = computed(() => globalState.lang);
 const projects = computed(() => {
   const isEn = currentLang.value === 'en';
   return [
-    {
+  {
+      id: 4,
+      title: isEn ? "Student Attendance System" : "Système de Gestion d'Absences",
+      desc: isEn
+        ? "Full-stack web application to collect, store, and analyze student attendance data. Built with a MariaDB architecture and containerized for data consistency."
+        : "Application web full-stack pour collecter, stocker et analyser les données de présence. Architecture basée sur MariaDB et conteneurisée pour la cohérence des données.",
+      placeholder: "📊 Data App",
+      tags: ["Python", "SQL", "Docker", "Flask"],
+      status: isEn ? "COMPLETED" : "TERMINÉ",
+      statusClass: "completed",
+
+      roleLabel: isEn ? "Role:" : "Rôle :",
+      role: isEn ? "Backend & Data Dev" : "Dév. Backend & Data", 
+      timeLabel: isEn ? "Year:" : "Année :",
+      time: "2025",
+      partnerLabel: isEn ? "Stack:" : "Stack :",
+      partnerName: "Flask / MariaDB",
+      partnerLink: "", 
+      achievements: isEn
+        ? ["💾 SQL Data Modeling", "🐳 Docker Containerization", "⚙️ Python ETL Logic"]
+        : ["💾 Modélisation Données SQL", "🐳 Conteneurisation Docker", "⚙️ Logique Traitement Python"],
+      links: [
+        { label: "GitLab", url: "https://github.com/1p0tato1/Gestion-des-appels" } 
+      ]
+    },
+    
+  
+  {
       id: 1,
       title: isEn ? "Website Creation & SEO" : "Création Site Web & SEO",
       desc: isEn 
@@ -89,6 +116,9 @@ const projects = computed(() => {
         { label: "GitHub", url: "https://github.com/1p0tato1/Pokemon-Game" }
       ]
     }
+
+    
+
   ];
 });
 
