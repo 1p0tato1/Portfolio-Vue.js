@@ -34,6 +34,33 @@ const projects = computed(() => {
         { label: "GitLab", url: "https://github.com/1p0tato1/Gestion-des-appels" } 
       ]
     },
+
+    {
+      id: 5, 
+      title: isEn ? "Netflix Data Analysis" : "Analyse de Données Netflix",
+      desc: isEn
+        ? "Exploratory Data Analysis (EDA) of the Netflix catalog. Features advanced data cleaning, statistical imputation algorithms to recover missing directors/cast, and visualization of global content strategies."
+        : "Analyse exploratoire (EDA) du catalogue Netflix. Inclut un nettoyage avancé, des algorithmes d'imputation statistique pour récupérer les données manquantes et une visualisation des stratégies de contenu mondiales.",
+      placeholder: "🎬 Netflix EDA",
+      tags: ["Python", "Pandas", "Seaborn", "Matplotlib"],
+      status: isEn ? "COMPLETED" : "TERMINÉ",
+      statusClass: "completed",
+
+      roleLabel: isEn ? "Role:" : "Rôle :",
+      role: isEn ? "Data Analyst" : "Data Analyst",
+      timeLabel: isEn ? "Year:" : "Année :",
+      time: "2026",
+      partnerLabel: isEn ? "Context:" : "Contexte :",
+      partnerName: "Data Science",
+      partnerLink: "", 
+      achievements: isEn
+        ? ["🤖 Statistical Imputation", "📊 Advanced Visualization", "🌍 Strategic Insights"]
+        : ["🤖 Imputation Statistique", "📊 Visualisation Avancée", "🌍 Insights Stratégiques"],
+      links: [
+        { label: isEn ? "See Demo" : "Voir la démo", url: "https://1p0tato1.github.io/Netflix-dataset/index.html" },
+        { label: "GitHub", url: "https://github.com/1p0tato1/Netflix-dataset" }
+      ]
+    },
     
   
   {
