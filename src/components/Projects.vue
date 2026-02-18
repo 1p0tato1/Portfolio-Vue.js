@@ -36,6 +36,33 @@ const projects = computed(() => {
     },
 
     {
+      id: 6, 
+      title: isEn ? "Titanic Survival Prediction" : "Prédiction de Survie du Titanic",
+      desc: isEn
+        ? "End-to-end Machine Learning pipeline for the Titanic disaster. Features advanced feature engineering (Title extraction), median-based statistical imputation, and a hyperparameter-tuned Random Forest model reaching a 0.77990 score."
+        : "Pipeline complet de Machine Learning pour le Titanic. Inclut du feature engineering avancé (extraction de titres), de l'imputation statistique basée sur la médiane, et un modèle Random Forest optimisé atteignant un score de 0.77990.",
+      placeholder: "🚢 Titanic ML",
+      tags: ["Python", "Scikit-Learn", "Pandas", "Seaborn"],
+      status: isEn ? "COMPLETED" : "TERMINÉ",
+      statusClass: "completed",
+
+      roleLabel: isEn ? "Role:" : "Rôle :",
+      role: isEn ? "ML Engineer" : "Ingénieur ML",
+      timeLabel: isEn ? "Year:" : "Année :",
+      time: "2026",
+      partnerLabel: isEn ? "Context:" : "Contexte :",
+      partnerName: "Kaggle Competition",
+      partnerLink: "https://www.kaggle.com/c/titanic", 
+      achievements: isEn
+        ? ["🌲 Random Forest Optimization", "🔍 Feature Engineering (Titles)", "🏆 Top 25% Leaderboard"]
+        : ["🌲 Optimisation Random Forest", "🔍 Feature Engineering (Titres)", "🏆 Top 25% Classement"],
+      links: [
+        { label: isEn ? "View PDF" : "Voir PDF", url: "public/pdfs/titanic_analysis_pdf.pdf" },
+        { label: "GitHub", url: "https://github.com/1p0tato1/titanic-survival-prediction" }
+      ]
+    },
+
+    {
       id: 5, 
       title: isEn ? "Netflix Data Analysis" : "Analyse de Données Netflix",
       desc: isEn
