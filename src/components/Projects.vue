@@ -63,6 +63,32 @@ const projects = computed(() => {
     },
 
     {
+      id: 7, 
+      title: isEn ? "Telco Customer Churn Prediction" : "Prédiction d'Attrition Client (Telco)",
+      desc: isEn
+        ? "End-to-end Machine Learning pipeline to predict customer churn. Features comprehensive EDA, SMOTE for imbalanced classes, and a hyperparameter-tuned XGBoost model prioritizing business revenue with an 82% Recall rate."
+        : "Pipeline complet de Machine Learning pour prédire l'attrition client. Inclut une EDA approfondie, l'utilisation de SMOTE pour les données déséquilibrées, et un modèle XGBoost optimisé atteignant un taux de rappel (Recall) de 82% pour maximiser la rétention.",
+      placeholder: "📉 Telco Churn ML",
+      tags: ["Python", "Scikit-Learn", "XGBoost", "SMOTE", "Pandas", "Seaborn"],
+      status: isEn ? "COMPLETED" : "TERMINÉ",
+      statusClass: "completed",
+
+      roleLabel: isEn ? "Role:" : "Rôle :",
+      role: isEn ? "Data Scientist" : "Data Scientist",
+      timeLabel: isEn ? "Year:" : "Année :",
+      time: "2026",
+      partnerLabel: isEn ? "Context:" : "Contexte :",
+      partnerName: "Portfolio Project",
+      achievements: isEn
+        ? ["🚀 82% Recall with XGBoost", "⚖️ SMOTE for Imbalanced Data", "📊 Business-Driven Feature Importance"]
+        : ["🚀 Taux de rappel de 82% (XGBoost)", "⚖️ Rééquilibrage des données (SMOTE)", "📊 Focus sur l'impact métier"],
+      links: [
+        { label: isEn ? "View PDF" : "Voir PDF", url: "public/pdfs/Telco-Analysis.pdf" },
+        { label: "GitHub", url: "https://github.com/1p0tato1/telco-customer-churn" }
+      ]
+    },
+
+    {
       id: 5, 
       title: isEn ? "Netflix Data Analysis" : "Analyse de Données Netflix",
       desc: isEn
