@@ -84,7 +84,7 @@ const projects = computed(() => {
         : ["🚀 Taux de rappel de 82% (XGBoost)", "⚖️ Rééquilibrage des données (SMOTE)", "📊 Focus sur l'impact métier"],
       links: [
         { label: isEn ? "View PDF" : "Voir PDF", url: "public/pdfs/Telco-Analysis.pdf" },
-        { label: "GitHub", url: "https://github.com/1p0tato1/telco-customer-churn" }
+        { label: "GitHub", url: "https://github.com/1p0tato1/Telco-Model" }
       ]
     },
 
