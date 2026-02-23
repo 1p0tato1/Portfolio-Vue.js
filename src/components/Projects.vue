@@ -57,7 +57,7 @@ const projects = computed(() => {
         ? ["🌲 Random Forest Optimization", "🔍 Feature Engineering (Titles)", "🏆 Top 25% Leaderboard"]
         : ["🌲 Optimisation Random Forest", "🔍 Feature Engineering (Titres)", "🏆 Top 25% Classement"],
       links: [
-        { label: isEn ? "View PDF" : "Voir PDF", url: "public/pdfs/titanic_analysis_pdf.pdf" },
+        { label: isEn ? "View PDF" : "Voir PDF", url: "https://github.com/1p0tato1/titanic-survival-prediction/blob/main/titanic_analysis_pdf.pdf" },
         { label: "GitHub", url: "https://github.com/1p0tato1/titanic-survival-prediction" }
       ]
     },
@@ -83,7 +83,7 @@ const projects = computed(() => {
         ? ["🚀 82% Recall with XGBoost", "⚖️ SMOTE for Imbalanced Data", "📊 Business-Driven Feature Importance"]
         : ["🚀 Taux de rappel de 82% (XGBoost)", "⚖️ Rééquilibrage des données (SMOTE)", "📊 Focus sur l'impact métier"],
       links: [
-        { label: isEn ? "View PDF" : "Voir PDF", url: "public/pdfs/Telco-Analysis.pdf" },
+        { label: isEn ? "View PDF" : "Voir PDF", url: "https://github.com/1p0tato1/Telco-Model/blob/main/Telco-Analysis.pdf" },
         { label: "GitHub", url: "https://github.com/1p0tato1/Telco-Model" }
       ]
     },
